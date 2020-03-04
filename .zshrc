@@ -15,7 +15,9 @@ setopt auto_cd
 alias ga='git add -A'
 alias gs='git status'
 alias gc='git commit'
-alias gf='git checkout'
+alias gck='git checkout'
+alias gb='git branch'
+alias glol='git log --oneline'
 # export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
