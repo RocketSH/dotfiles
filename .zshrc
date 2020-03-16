@@ -18,6 +18,7 @@ alias gc='git commit'
 alias gck='git checkout'
 alias gb='git branch'
 alias glol='git log --oneline'
+alias gp='git push'
 # export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
