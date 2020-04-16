@@ -74,9 +74,9 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>2530 758 700 622 0 0 3840 2137 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>960 0 960 1057 0 0 1920 1057 </string>
+	<string>65 23 1855 1034 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>780 148 905 652 0 0 1920 1057 </string>
+	<string>149 337 1440 427 0 0 1440 877 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -428,6 +428,13 @@
 					<key>Text</key>
 					<string>0x4</string>
 				</dict>
+				<key>0x70-0x100000</key>
+				<dict>
+					<key>Action</key>
+					<integer>11</integer>
+					<key>Text</key>
+					<string>0x10</string>
+				</dict>
 				<key>0xf700-0x220000</key>
 				<dict>
 					<key>Action</key>
@@ -677,7 +684,7 @@
 			<key>Normal Font</key>
 			<string>Monaco 18</string>
 			<key>Option Key Sends</key>
-			<integer>0</integer>
+			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
 			<false/>
 			<key>Right Option Key Sends</key>
@@ -749,7 +756,7 @@
 	<key>NoSyncFrame_SessionsPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{0, 0}, {1440, 900}}</string>
+		<string>{{0, 0}, {1920, 1080}}</string>
 		<key>topLeft</key>
 		<string>{269, 595}</string>
 	</dict>
@@ -758,12 +765,12 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1920, 1080}}</string>
 		<key>topLeft</key>
-		<string>{401, 767}</string>
+		<string>{99, 765}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>97EDA0D3-60D1-446A-B58C-363029786F46</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>28</integer>
+	<integer>42</integer>
 	<key>NoSyncNeverAskAboutSettingAlternateMouseScroll</key>
 	<true/>
 	<key>NoSyncNextAnnoyanceTime</key>
@@ -1482,6 +1489,8 @@
 	<true/>
 	<key>NoSyncTipOfTheDayEligibilityBeganTime</key>
 	<real>597062013.42086399</real>
+	<key>PMPrintingExpandedStateForPrint2</key>
+	<false/>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -1517,6 +1526,8 @@
 	</dict>
 	<key>PrefsCustomFolder</key>
 	<string>/Users/shuhan/.dotfiles</string>
+	<key>Print In Black And White</key>
+	<true/>
 	<key>PromptOnQuitEvenIfThereAreNoWindows</key>
 	<false/>
 	<key>SUEnableAutomaticChecks</key>
@@ -1528,7 +1539,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-03-23T11:13:22Z</date>
+	<date>2020-04-08T01:44:03Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>

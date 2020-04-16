@@ -31,7 +31,11 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     markdown
+     javascript
+     yaml
      ruby
+     ruby-on-rails
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -39,7 +43,7 @@ values."
      ;; ----------------------------------------------------------------
      ivy
      html osx 
-     auto-completion
+     (auto-completion :variables auto-completion-enable-help-tooltip t)
      ;; better-defaults
      emacs-lisp
      git
@@ -56,7 +60,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(doom-themes)
+   dotspacemacs-additional-packages '(doom-themes prettier-js)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -150,7 +154,7 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(doom-horizon spacemacs-dark
+   dotspacemacs-themes '(spacemacs-dark
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -334,6 +338,28 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;; Make evil mode recognize snake_case words
+  (defadvice evil-inner-word (around underscore-as-word activate)
+    (let ((table (copy-syntax-table (syntax-table))))
+      (modify-syntax-entry ?_ "w" table)
+      (with-syntax-table table
+        ad-do-it)))
+
+  (setq yas-snippet-dirs
+        '("~/.dotfiles/snippets"                 ;; personal snippets
+          ))
+  (setq
+   ;; js2-mode
+   js2-basic-offset 2
+   js-indent-level 2
+   typescript-indent-level 2
+   ;; web-mode
+   css-indent-offset 2
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-attr-indent-offset 2)
+  
   (setq mac-command-modifier 'control)
   (setq mac-option-modifier 'meta)
   (global-hl-line-mode -1)
@@ -341,6 +367,9 @@ you should place your code here."
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
   (global-set-key (kbd "<f9>") 'neotree-project-dir-toggle)
   (global-set-key (kbd "<f10>") 'save-buffers-kill-terminal)
+  (global-set-key (kbd "C-s") 'save-buffer)
+  (define-key evil-normal-state-map (kbd "C-p") 'counsel-projectile-find-file)
+  (add-hook 'js2-mode-hook 'prettier-js-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -352,7 +381,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (doom-themes web-mode tagedit slim-mode scss-mode sass-mode reveal-in-osx-finder pug-mode pbcopy osx-trash osx-dictionary launchctl haml-mode emmet-mode company-web web-completion-data doom-horizon-theme ewal-doom-themes smeargle orgit magit-gitflow magit-popup gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-ivy flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby ws-butler winum which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-make google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump popup f dash s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed async aggressive-indent adaptive-wrap ace-window ace-link avy))))
+    (mmm-mode markdown-toc markdown-mode gh-md company-quickhelp projectile-rails inflections feature-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode yaml-mode prettier-js doom-material-theme doom-themes web-mode tagedit slim-mode scss-mode sass-mode reveal-in-osx-finder pug-mode pbcopy osx-trash osx-dictionary launchctl haml-mode emmet-mode company-web web-completion-data doom-horizon-theme ewal-doom-themes smeargle orgit magit-gitflow magit-popup gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-ivy flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby ws-butler winum which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-make google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump popup f dash s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed async aggressive-indent adaptive-wrap ace-window ace-link avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

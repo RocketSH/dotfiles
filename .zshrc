@@ -1,5 +1,6 @@
 autoload -Uz compinit
 setopt prompt_subst
+bindkey -v
 compinit
 
 # function to return current branch name while suppressing errors.
@@ -42,6 +43,5 @@ alias vim=nvim
 export PATH="$PATH:$HOME/.rvm/bin"
 
 . $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

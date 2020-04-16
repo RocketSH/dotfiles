@@ -13,6 +13,7 @@ Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle','NERDTreeFind'] }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'ctjhoa/spacevim'
 call plug#end()
 
 syntax on
@@ -30,9 +31,17 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
+let mapleader = " "
+let NERDTreeMinimalUI=28
+let NERDTreeDirArrows=1
+
+nnoremap <Space> <Nop>
+
 inoremap <C-s> <esc>:update<cr>
 nnoremap <C-s> :update<cr>
 nnoremap <C-p> :Files<cr>
+map <F9> :NERDTreeToggle<cr>
+map <F10> :wqa<CR>
 
 colorscheme onehalfdark
 let g:airline_theme='onehalfdark'
