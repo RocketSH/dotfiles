@@ -30,12 +30,14 @@ fi
 
 setopt auto_cd
 
+alias g='git'
 alias gs='git status'
 alias ga='git add'
 alias gaa='git add -A'
 alias gb='git branch'
 alias gc='git commit'
 alias gco='git checkout'
+alias gcod='git checkout develop'
 alias gcom='git checkout master'
 alias gd='git diff'
 alias glol='git log --oneline'
@@ -44,8 +46,7 @@ alias gp='git push'
 alias gpu='git pull'
 
 alias c="code ."
-
-alias yi="yarn install"
+alias cd..="cd .."
 alias y="yarn install --check-files"
 alias vim=nvim
 # export PATH="/usr/local/opt/ruby/bin:$PATH"
