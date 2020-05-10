@@ -29,13 +29,24 @@ else;
 fi
 
 setopt auto_cd
-alias ga='git add -A'
+
 alias gs='git status'
-alias gc='git commit'
-alias gck='git checkout'
+alias ga='git add'
+alias gaa='git add -A'
 alias gb='git branch'
+alias gc='git commit'
+alias gco='git checkout'
+alias gcom='git checkout master'
+alias gd='git diff'
 alias glol='git log --oneline'
+alias gl='git log --graph --online --all --decorate'
 alias gp='git push'
+alias gpu='git pull'
+
+alias c="code ."
+
+alias yi="yarn install"
+alias y="yarn install --check-files"
 alias vim=nvim
 # export PATH="/usr/local/opt/ruby/bin:$PATH"
 
@@ -45,3 +56,5 @@ export PATH="$PATH:$HOME/.rvm/bin"
 . $HOME/.asdf/asdf.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
