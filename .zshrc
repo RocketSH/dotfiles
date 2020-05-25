@@ -44,6 +44,9 @@ alias glol='git log --oneline'
 alias gl='git log --graph --online --all --decorate'
 alias gp='git push'
 alias gpu='git pull'
+alias gsl='git stash list'
+alias gsp='git stash pop'
+alias gsd='git stash drop'
 
 alias c="code ."
 alias cd..="cd .."
