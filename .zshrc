@@ -5,7 +5,8 @@ compinit
 
 # function to return current branch name while suppressing errors.
 function git_branch() {
-    branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+  #branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+  branch=$(git symbolic-ref HEAD 2> /dev/null | awk '{print $NF}')
     if [[ $branch == "" ]]; then
         :
     else
@@ -36,6 +37,7 @@ alias ga='git add'
 alias gaa='git add -A'
 alias gb='git branch'
 alias gc='git commit'
+alias gm='git merge'
 alias gco='git checkout'
 alias gcod='git checkout develop'
 alias gcom='git checkout master'
@@ -47,10 +49,17 @@ alias gpu='git pull'
 alias gsl='git stash list'
 alias gsp='git stash pop'
 alias gsd='git stash drop'
+alias gr1='git reset HEAD^'
+alias gf='git fetch'
 
 alias c="code ."
 alias cd..="cd .."
+
+alias nrs='npm run serve'
 alias y="yarn install --check-files"
+alias b="bundle"
+alias fs="foreman start"
+alias 3fs="PORT=3000 foreman start"
 alias vim=nvim
 # export PATH="/usr/local/opt/ruby/bin:$PATH"
 
