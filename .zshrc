@@ -55,6 +55,7 @@ alias gf='git fetch'
 alias c="code ."
 alias cd..="cd .."
 
+alias ni='npm install'
 alias nrs='npm run serve'
 alias y="yarn install --check-files"
 alias b="bundle"
