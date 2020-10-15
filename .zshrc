@@ -62,6 +62,7 @@ alias b="bundle"
 alias fs="foreman start"
 alias 3fs="PORT=3000 foreman start"
 alias vim=nvim
+alias icotxt=iconv -f big5 -t utf8
 # export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
