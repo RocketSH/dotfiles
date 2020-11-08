@@ -58,6 +58,7 @@ alias cd..="cd .."
 alias ni='npm install'
 alias nrs='npm run serve'
 alias y="yarn install --check-files"
+alias ys="yarn start"
 alias b="bundle"
 alias fs="foreman start"
 alias 3fs="PORT=3000 foreman start"
