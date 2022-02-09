@@ -55,16 +55,19 @@ alias gf='git fetch'
 alias c="code ."
 alias cd..="cd .."
 
-alias ni='npm install'
-alias nrs='npm run serve'
-alias y="yarn install --check-files"
+alias y="yarn"
+alias yd="yarn dev"
 alias ys="yarn start"
-alias b="bundle"
 alias fs="foreman start"
 alias 3fs="PORT=3000 foreman start"
+
 alias vim=nvim
 alias icotxt=iconv -f big5 -t utf8
 alias rmpostmaster.pid='/usr/local/var/postgres/postmaster.pid'
+
+# ruby on rails
+alias b="bundle"
+alias rs="rails s"
 # export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -75,3 +78,6 @@ export PATH="$PATH:$HOME/.rvm/bin"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH=/opt/homebrew/bin:$PATH
+
+export EDITOR="nvim"
