@@ -54,6 +54,7 @@ alias gf='git fetch'
 
 alias c="code ."
 alias cd..="cd .."
+alias lsa="ls -al"
 
 alias y="yarn"
 alias yd="yarn dev"

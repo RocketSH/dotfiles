@@ -14,6 +14,8 @@ Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle','NERDTreeFind'] }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ctjhoa/spacevim'
+Plug 'tpope/vim-rails'
+Plug 'vim-ruby/vim-ruby'
 call plug#end()
 
 syntax on
