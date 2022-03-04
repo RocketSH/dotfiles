@@ -46,15 +46,9 @@ alias glol='git log --oneline'
 alias gl='git log --graph --online --all --decorate'
 alias gp='git push'
 alias gpu='git pull'
-alias gsl='git stash list'
-alias gsp='git stash pop'
-alias gsd='git stash drop'
-alias gr1='git reset HEAD^'
-alias gf='git fetch'
 
 alias c="code ."
 alias cd..="cd .."
-alias lsa="ls -al"
 
 alias y="yarn"
 alias yd="yarn dev"
@@ -69,6 +63,7 @@ alias rmpostmaster.pid='/usr/local/var/postgres/postmaster.pid'
 # ruby on rails
 alias b="bundle"
 alias rs="rails s"
+alias r="rspec"
 # export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
