@@ -5,17 +5,60 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
-Plug 'tpope/vim-endwise'
-Plug 'jiangmiao/auto-pairs'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
+" navigation
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle','NERDTreeFind'] }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'lambdalisue/fern-git-status.vim'
+
+
+" text editing
+Plug 'tpope/vim-surround'                               " better brackets
+Plug 'tpope/vim-commentary'                             " comments
+Plug 'tpope/vim-abolish'                                " coerce camelCase / snake_case
+Plug 'Raimondi/delimitMate', { 'on': [] }               " closing brackets
+Plug 'alvan/vim-closetag', { 'on': [] }                 " closing tags
+Plug 'terryma/vim-expand-region'                        " change visual selection by using '+' / '-'
+Plug 'nathanaelkane/vim-indent-guides'                  " indent columns
+Plug 'w0rp/ale', { 'on': [] }                           " lint
+Plug 'neoclide/coc.nvim', { 'on': [], 'branch': 'release'} " autocomplete and LSP: coc-solargraph, coc-tsserver
+Plug 'github/copilot.vim', { 'on': [] }                 " smart autocompletion
+
+" vim
+Plug 'nvim-lua/plenary.nvim'
 Plug 'ctjhoa/spacevim'
-Plug 'tpope/vim-rails'
-Plug 'vim-ruby/vim-ruby'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
+
+" theme
+Plug 'flazz/vim-colorschemes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" git
+Plug 'TimUntersberger/neogit'
+Plug 'airblade/vim-gitgutter'
+
+" css
+Plug 'slim-template/vim-slim', { 'for': 'slim' }
+
+" ruby / rails
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }             " ruby
+Plug 'tpope/vim-rails', { 'for': 'ruby' }               " rails
+Plug 'tpope/vim-endwise', { 'for': ['ruby', 'elixir'], 'on': [] } " auto end
+Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }          " run rspec
+Plug 'tpope/vim-bundler', { 'for': 'ruby' }             " bundle commands and smart ctags
+
+" js / jsx / ts / tsx
+Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
+Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['javascript'] }
+Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
+Plug 'peitalin/vim-jsx-typescript', { 'for': ['typescript'] }
+
+" syntaxes and languages
+Plug 'valloric/MatchTagAlways', { 'for': ['xml', 'html', 'eruby', 'eelixir', 'javascriptreact', 'typescriptreact'] } " highlight matching tags
+Plug 'shime/vim-livedown', { 'for': 'markdown' }        " real time markdown editing
 call plug#end()
 
 syntax on
@@ -36,15 +79,45 @@ endif
 let mapleader = " "
 let NERDTreeMinimalUI=28
 let NERDTreeDirArrows=1
+let g:coc_global_extensions = ['coc-solargraph']
+let g:AutoPairs = {'(':')', '[':']', '{':'}', "`":"`", '```':'```', '"""':'"""'}
 
 nnoremap <Space> <Nop>
 
 inoremap <C-s> <esc>:update<cr>
 nnoremap <C-s> :update<cr>
 nnoremap <C-p> :Files<cr>
-map <F9> :NERDTreeToggle<cr>
+
+" open fern
+inoremap <silent> <F9> <esc>
+nnoremap <silent> <F9> :Fern . -drawer -reveal=% -toggle<CR>
+map <Leader>fer :source $MYVIMRC<cr>
+map <Leader>pi :PlugInstall<cr>
 map <F10> :wqa<CR>
 
-colorscheme onehalfdark
-let g:airline_theme='onehalfdark'
+map <Leader>wd :q<cr>
+map <Leader>wm :only<cr>
+
+map <Leader>gg :Neogit<cr>
+map <Leader>gp :NeogitPushPopup<cr>
+
+
+" autocmd
+augroup lazy_load_on_insert
+  autocmd!
+  autocmd InsertEnter * call plug#load('delimitMate', 'ale', 'coc.nvim', 'copilot.vim')
+
+  autocmd InsertEnter *.rb,*.ex call plug#load('vim-endwise')
+  autocmd InsertEnter *.js,*.jsx,*.tsx,*.xml,*.html,*.erb,*.eex call plug#load('vim-closetag')
+augroup END
+
+" status line
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_detect_crypt = 0
+let g:airline_section_y = ''
+let g:airline_section_warning = ''
+
+" theme
+colorscheme codedark
+let g:airline_theme="base16"
 

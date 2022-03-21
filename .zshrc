@@ -31,6 +31,7 @@ fi
 
 setopt auto_cd
 
+# git command
 alias g='git'
 alias gs='git status'
 alias ga='git add'
@@ -62,8 +63,10 @@ alias rmpostmaster.pid='/usr/local/var/postgres/postmaster.pid'
 
 # ruby on rails
 alias b="bundle"
-alias rs="rails s"
-alias r="rspec"
+alias br="bin/rails"
+alias rs="rspec"
+alias wds="bin/webpack-dev-server"
+alias cs="bin/rails console --sandbox"
 # export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
