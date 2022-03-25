@@ -38,15 +38,12 @@ alias ga='git add'
 alias gaa='git add -A'
 alias gb='git branch'
 alias gc='git commit'
-alias gm='git merge'
 alias gco='git checkout'
-alias gcod='git checkout develop'
-alias gcom='git checkout master'
 alias gd='git diff'
-alias glol='git log --oneline'
-alias gl='git log --graph --online --all --decorate'
+alias glol='git log --all --graph --decorate --oneline'
 alias gp='git push'
 alias gpu='git pull'
+alias gca= 'git commit --amend'
 
 alias c="code ."
 alias cd..="cd .."
