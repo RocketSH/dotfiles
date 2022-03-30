@@ -118,6 +118,6 @@ let g:airline_section_y = ''
 let g:airline_section_warning = ''
 
 " theme
-colorscheme codedark
+colorscheme 1989
 let g:airline_theme="base16"
 
