@@ -43,7 +43,6 @@ alias gd='git diff'
 alias glol='git log --all --graph --decorate --oneline'
 alias gp='git push'
 alias gpu='git pull'
-alias gca= 'git commit --amend'
 
 alias c="code ."
 alias cd..="cd .."
