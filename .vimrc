@@ -12,6 +12,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'lambdalisue/fern-git-status.vim'
+Plug 'Konfekt/FastFold'
 
 
 " text editing
@@ -39,6 +40,8 @@ Plug 'vim-airline/vim-airline-themes'
 " git
 Plug 'TimUntersberger/neogit'
 Plug 'airblade/vim-gitgutter'
+Plug 'APZelos/blamer.nvim'
+
 
 " css
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
@@ -95,9 +98,26 @@ map <Leader>fer :source $MYVIMRC<cr>
 map <Leader>pi :PlugInstall<cr>
 map <F10> :wqa<CR>
 
+" buffer navigation
+nnoremap <Leader>l :ls<CR>
+nnoremap <Leader>b :bp<CR>
+nnoremap <Leader>n :bn<CR>
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+nnoremap <Leader>0 :10b<CR>
+
+" vim
 map <Leader>wd :q<cr>
 map <Leader>wm :only<cr>
 
+" Neogit
 map <Leader>gg :Neogit<cr>
 map <Leader>gp :NeogitPushPopup<cr>
 
