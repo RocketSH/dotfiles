@@ -1,6 +1,6 @@
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall
 endif
 
@@ -14,18 +14,25 @@ Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'lambdalisue/fern-git-status.vim'
 Plug 'Konfekt/FastFold'
 
-
 " text editing
 Plug 'tpope/vim-surround'                               " better brackets
 Plug 'tpope/vim-commentary'                             " comments
 Plug 'tpope/vim-abolish'                                " coerce camelCase / snake_case
+Plug 'tpope/vim-haml'
 Plug 'Raimondi/delimitMate', { 'on': [] }               " closing brackets
 Plug 'alvan/vim-closetag', { 'on': [] }                 " closing tags
 Plug 'terryma/vim-expand-region'                        " change visual selection by using '+' / '-'
 Plug 'nathanaelkane/vim-indent-guides'                  " indent columns
 Plug 'w0rp/ale', { 'on': [] }                           " lint
-Plug 'neoclide/coc.nvim', { 'on': [], 'branch': 'release'} " autocomplete and LSP: coc-solargraph, coc-tsserver
+Plug 'neoclide/coc.nvim', { 'on': [], 'branch': 'release'} " autocomplete and LSP: -solargraph, -tsserver
 Plug 'github/copilot.vim', { 'on': [] }                 " smart autocompletion
+
+" css
+Plug 'slim-template/vim-slim', { 'for': 'slim' }
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'ap/vim-css-color'
+Plug 'JulesWang/css.vim'
+Plug 'hail2u/vim-css3-syntax'
 
 " vim
 Plug 'nvim-lua/plenary.nvim'
@@ -42,16 +49,12 @@ Plug 'TimUntersberger/neogit'
 Plug 'airblade/vim-gitgutter'
 Plug 'APZelos/blamer.nvim'
 
-
-" css
-Plug 'slim-template/vim-slim', { 'for': 'slim' }
-
 " ruby / rails
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }             " ruby
 Plug 'tpope/vim-rails', { 'for': 'ruby' }               " rails
 Plug 'tpope/vim-endwise', { 'for': ['ruby', 'elixir'], 'on': [] } " auto end
 Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }          " run rspec
-Plug 'tpope/vim-bundler', { 'for': 'ruby' }             " bundle commands and smart ctags
+Plug 'tpope/vim-bundler', { 'for': 'ruby' }             " bundle s and smart ctags
 
 " js / jsx / ts / tsx
 Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
@@ -60,7 +63,7 @@ Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
 Plug 'peitalin/vim-jsx-typescript', { 'for': ['typescript'] }
 
 " syntaxes and languages
-Plug 'valloric/MatchTagAlways', { 'for': ['xml', 'html', 'eruby', 'eelixir', 'javascriptreact', 'typescriptreact'] } " highlight matching tags
+Plug 'valloric/MatchTagAlways', { 'for': ['xml', 'html', 'eruby', 'eelixir', 'javascript', 'javascriptreact', 'typescriptreact'] } " highlight matching tags
 Plug 'shime/vim-livedown', { 'for': 'markdown' }        " real time markdown editing
 call plug#end()
 
@@ -82,7 +85,7 @@ endif
 let mapleader = " "
 let NERDTreeMinimalUI=28
 let NERDTreeDirArrows=1
-let g:coc_global_extensions = ['coc-solargraph']
+let g:coc_global_extensions = ['-solargraph']
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "`":"`", '```':'```', '"""':'"""'}
 
 nnoremap <Space> <Nop>
@@ -98,20 +101,9 @@ map <Leader>fer :source $MYVIMRC<cr>
 map <Leader>pi :PlugInstall<cr>
 map <F10> :wqa<CR>
 
-" buffer navigation
-nnoremap <Leader>l :ls<CR>
+" ffer navigation
 nnoremap <Leader>b :bp<CR>
 nnoremap <Leader>n :bn<CR>
-nnoremap <Leader>1 :1b<CR>
-nnoremap <Leader>2 :2b<CR>
-nnoremap <Leader>3 :3b<CR>
-nnoremap <Leader>4 :4b<CR>
-nnoremap <Leader>5 :5b<CR>
-nnoremap <Leader>6 :6b<CR>
-nnoremap <Leader>7 :7b<CR>
-nnoremap <Leader>8 :8b<CR>
-nnoremap <Leader>9 :9b<CR>
-nnoremap <Leader>0 :10b<CR>
 
 " vim
 map <Leader>wd :q<cr>
@@ -125,11 +117,14 @@ map <Leader>gp :NeogitPushPopup<cr>
 " autocmd
 augroup lazy_load_on_insert
   autocmd!
-  autocmd InsertEnter * call plug#load('delimitMate', 'ale', 'coc.nvim', 'copilot.vim')
+  autocmd InsertEnter * call plug#load('delimitMate', 'ale', '.nvim', 'copilot.vim')
 
   autocmd InsertEnter *.rb,*.ex call plug#load('vim-endwise')
   autocmd InsertEnter *.js,*.jsx,*.tsx,*.xml,*.html,*.erb,*.eex call plug#load('vim-closetag')
 augroup END
+
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
 
 " status line
 let g:airline#extensions#tabline#enabled = 1
