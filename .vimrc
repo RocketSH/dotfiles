@@ -94,6 +94,24 @@ inoremap <C-s> <esc>:update<cr>
 nnoremap <C-s> :update<cr>
 nnoremap <C-p> :Files<cr>
 
+" fastfold
+nmap zuz <Plug>(FastFoldUpdate)
+" let g:fastfold_savehook = 1
+" let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
+" let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
+let g:fastfold_force = 1
+
+let g:markdown_folding = 1
+let g:rst_fold_enabled = 1
+let g:tex_fold_enabled = 1
+let g:vimsyn_folding = 'af'
+let g:xml_syntax_folding = 1
+let g:javaScript_fold = 1
+let g:sh_fold_enabled= 7
+let g:zsh_fold_enable = 1
+let g:ruby_fold = 1
+let g:r_syntax_folding = 1
+
 " open fern
 inoremap <silent> <F9> <esc>
 nnoremap <silent> <F9> :Fern . -drawer -reveal=% -toggle<CR>
@@ -101,7 +119,7 @@ map <Leader>fer :source $MYVIMRC<cr>
 map <Leader>pi :PlugInstall<cr>
 map <F10> :wqa<CR>
 
-" ffer navigation
+" buffer navigation
 nnoremap <Leader>b :bp<CR>
 nnoremap <Leader>n :bn<CR>
 
