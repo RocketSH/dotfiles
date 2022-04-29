@@ -12,20 +12,27 @@ Plug 'junegunn/fzf.vim'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'lambdalisue/fern-git-status.vim'
-Plug 'Konfekt/FastFold'
 
 " text editing
 Plug 'tpope/vim-surround'                               " better brackets
 Plug 'tpope/vim-commentary'                             " comments
 Plug 'tpope/vim-abolish'                                " coerce camelCase / snake_case
-Plug 'tpope/vim-haml'
 Plug 'Raimondi/delimitMate', { 'on': [] }               " closing brackets
 Plug 'alvan/vim-closetag', { 'on': [] }                 " closing tags
 Plug 'terryma/vim-expand-region'                        " change visual selection by using '+' / '-'
 Plug 'nathanaelkane/vim-indent-guides'                  " indent columns
 Plug 'w0rp/ale', { 'on': [] }                           " lint
-Plug 'neoclide/coc.nvim', { 'on': [], 'branch': 'release'} " autocomplete and LSP: -solargraph, -tsserver
-Plug 'github/copilot.vim', { 'on': [] }                 " smart autocompletion
+Plug 'jiangmiao/auto-pairs'
+Plug 'lifepillar/pgsql.vim', { 'for': 'sql' }
+
+" autocompletion
+Plug 'neoclide/coc.nvim', { 'on': [], 'branch': 'release'} 
+Plug 'github/copilot.vim', { 'on': [] }
+Plug 'SirVer/ultisnips', { 'for': ['javascript', 'jsx', 'typescript', 'typescriptreact'] }
+Plug 'mlaursen/vim-react-snippets'
+
+Plug 'ludovicchabant/vim-gutentags', { 'for': ['javascript', 'jsx', 'typescript', 'typescriptreact', 'elixir'] }
+
 
 " css
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
@@ -55,12 +62,22 @@ Plug 'tpope/vim-rails', { 'for': 'ruby' }               " rails
 Plug 'tpope/vim-endwise', { 'for': ['ruby', 'elixir'], 'on': [] } " auto end
 Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }          " run rspec
 Plug 'tpope/vim-bundler', { 'for': 'ruby' }             " bundle s and smart ctags
+Plug 'slim-template/vim-slim', { 'for': 'slim' }
+Plug 'tpope/vim-haml'
 
 " js / jsx / ts / tsx
-Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
-Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['javascript'] }
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'jsx', 'typescript', 'typescriptreact'] }
+Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['javascript', 'jsx', 'typescriptreact'] }
+Plug 'mattn/emmet-vim', { 'for': ['javascript', 'jsx', 'typescriptreact', 'html', 'eelixir'] }
+Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript', 'typescriptreact'] }
+Plug 'cakebaker/scss-syntax.vim', { 'for': 'sass' }
+Plug 'jparise/vim-graphql', { 'for': ['javascript', 'typescript', 'jsx'] }
+Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
 Plug 'peitalin/vim-jsx-typescript', { 'for': ['typescript'] }
+Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+
+Plug 'evanleck/vim-svelte', {'branch': 'main', 'for': 'svelte' }
 
 " syntaxes and languages
 Plug 'valloric/MatchTagAlways', { 'for': ['xml', 'html', 'eruby', 'eelixir', 'javascript', 'javascriptreact', 'typescriptreact'] } " highlight matching tags
@@ -85,8 +102,10 @@ endif
 let mapleader = " "
 let NERDTreeMinimalUI=28
 let NERDTreeDirArrows=1
-let g:coc_global_extensions = ['-solargraph']
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "`":"`", '```':'```', '"""':'"""'}
+
+" coc config
+let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint', 'coc-stylelintplus', 'coc-rls', 'coc-prettier', 'coc-json', 'coc-elixir', 'coc-emmet', 'coc-css', 'coc-diagnostic', 'coc-snippets', 'coc-vetur']
 
 nnoremap <Space> <Nop>
 
@@ -94,23 +113,8 @@ inoremap <C-s> <esc>:update<cr>
 nnoremap <C-s> :update<cr>
 nnoremap <C-p> :Files<cr>
 
-" fastfold
-nmap zuz <Plug>(FastFoldUpdate)
-" let g:fastfold_savehook = 1
-" let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
-" let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
-let g:fastfold_force = 1
-
-let g:markdown_folding = 1
-let g:rst_fold_enabled = 1
-let g:tex_fold_enabled = 1
-let g:vimsyn_folding = 'af'
-let g:xml_syntax_folding = 1
-let g:javaScript_fold = 1
-let g:sh_fold_enabled= 7
-let g:zsh_fold_enable = 1
-let g:ruby_fold = 1
-let g:r_syntax_folding = 1
+" folding
+set foldmethod=manual
 
 " open fern
 inoremap <silent> <F9> <esc>
@@ -149,6 +153,22 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_detect_crypt = 0
 let g:airline_section_y = ''
 let g:airline_section_warning = ''
+
+" ultisnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+" Press Tab to scroll _down_ a list of auto-completions
+let g:SuperTabDefaultCompletionType = "<c-n>"
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-n>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
 
 " theme
 colorscheme 1989
