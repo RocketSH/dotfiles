@@ -59,10 +59,10 @@ alias rmpostmaster.pid='/usr/local/var/postgres/postmaster.pid'
 
 # ruby on rails
 alias b="bundle"
-alias br="bin/rails"
-alias rs="rspec"
-alias wds="bin/webpack-dev-server"
-alias cs="bin/rails console --sandbox"
+alias br="bin\/rails server"
+alias rs="bin\/rspec"
+alias bw="bin\/webpack-dev-server"
+alias bc="bin\/rails console --sandbox"
 # export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
