@@ -65,6 +65,9 @@ Plug 'tpope/vim-bundler', { 'for': 'ruby' }             " bundle s and smart cta
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'tpope/vim-haml'
 
+" Testing
+Plug 'vim-test/vim-test', { 'for': ['ruby', 'typescript'] }
+
 " js / jsx / ts / tsx
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'jsx', 'typescript', 'typescriptreact'] }
 Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['javascript', 'jsx', 'typescriptreact'] }
@@ -103,6 +106,13 @@ let mapleader = " "
 let NERDTreeMinimalUI=28
 let NERDTreeDirArrows=1
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "`":"`", '```':'```', '"""':'"""'}
+
+" vim-test
+map <Leader>mtv :TestFile<CR>
+map <Leader>mtr :TestLast<CR>
+map <Leader>mta :TestSuite<CR>
+let test#strategy = "neovim"
+let test#neovim#term_position = "vert botright"
 
 " coc config
 let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint', 'coc-stylelintplus', 'coc-rls', 'coc-prettier', 'coc-json', 'coc-elixir', 'coc-emmet', 'coc-css', 'coc-diagnostic', 'coc-snippets', 'coc-vetur']
@@ -147,6 +157,11 @@ augroup END
 
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
+
+" blamer
+let g:blamer_enabled = 1
+let g:blamer_show_in_visual_modes = 0
+highlight Blamer guifg=lightgrey
 
 " status line
 let g:airline#extensions#tabline#enabled = 1
