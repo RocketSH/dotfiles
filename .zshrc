@@ -50,12 +50,9 @@ alias cd..="cd .."
 alias y="yarn"
 alias yd="yarn dev"
 alias ys="yarn start"
-alias fs="foreman start"
-alias 3fs="PORT=3000 foreman start"
 
 alias vim=nvim
 alias icotxt=iconv -f big5 -t utf8
-alias rmpostmaster.pid='/usr/local/var/postgres/postmaster.pid'
 
 # ruby on rails
 alias b="bundle"
@@ -63,6 +60,7 @@ alias br="bin\/rails server"
 alias rs="bin\/rspec"
 alias bw="bin\/webpack-dev-server"
 alias bc="bin\/rails console --sandbox"
+alias fm="foreman start -f Procfile.dev"
 # export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.

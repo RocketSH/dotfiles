@@ -64,6 +64,7 @@ Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }          " run rspec
 Plug 'tpope/vim-bundler', { 'for': 'ruby' }             " bundle s and smart ctags
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'tpope/vim-haml'
+Plug 'ngmy/vim-rubocop'
 
 " Testing
 Plug 'vim-test/vim-test', { 'for': ['ruby', 'typescript'] }
