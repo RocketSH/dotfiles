@@ -146,6 +146,18 @@ map <Leader>wm :only<cr>
 map <Leader>gg :Neogit<cr>
 map <Leader>gp :NeogitPushPopup<cr>
 
+" rubocop
+let g:vimrubocop_keymap = 0
+nmap <Leader>r :RuboCop<CR>
+
+" Set specific linters
+let g:ale_linters = { 'javascript':['eslint'], 'ruby': ['rubocop'] }
+" Only run linters named in ale_linters settings.
+let g:ale_linters_explicit = 1 
+let g:airline#extensions#ale#enabled = 1
+let g:ale_sign_column_always = 1
+" Disable ALE auto highlights
+let g:ale_set_highlights = 0
 
 " autocmd
 augroup lazy_load_on_insert
