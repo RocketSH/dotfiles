@@ -61,6 +61,10 @@ alias rs="bin\/rspec"
 alias bw="bin\/webpack-dev-server"
 alias bc="bin\/rails console --sandbox"
 alias fm="foreman start -f Procfile.dev"
+
+# homebrew
+alias brewall="brew update && brew upgrade && brew cleanup"
+
 # export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
