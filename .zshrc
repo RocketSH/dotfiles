@@ -46,6 +46,7 @@ alias gpu='git pull'
 
 alias c="code ."
 alias cd..="cd .."
+alias ls -al="lsa"
 
 alias y="yarn"
 alias yd="yarn dev"
@@ -61,6 +62,7 @@ alias rs="bin\/rspec"
 alias bw="bin\/webpack-dev-server"
 alias bc="bin\/rails console --sandbox"
 alias fm="foreman start -f Procfile.dev"
+alias fs="foreman start"
 
 # homebrew
 alias brewall="brew update && brew upgrade && brew cleanup"
