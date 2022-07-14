@@ -44,6 +44,25 @@ alias glol='git log --all --graph --decorate --oneline'
 alias gp='git push'
 alias gpu='git pull'
 
+gpd() {
+  branch="$(git rev-parse --abbrev-ref HEAD)"
+  git push -u origin "$branch"
+}
+
+ticket() {
+  base_branch="${BASE_BRANCH:-origin/development}"
+  initials="${INITIALS:-SH}"
+  ticket_number="$1"
+  name="${@:2}"
+  task_name="$(echo $name | tr ' ' '_' | tr '[:upper:]' '[:lower:]')"
+  branch_name="${initials}_${ticket_number}_${task_name}"
+  echo "Creating branch $branch_name"
+  git checkout -b $branch_name $base_branch
+}
+
+alias gicm="git init && git add -A && git commit -m 'Initial commit'"
+
+
 alias c="code ."
 alias cd..="cd .."
 alias ls -al="lsa"
