@@ -106,6 +106,7 @@ endif
 let mapleader = " "
 let NERDTreeMinimalUI=28
 let NERDTreeDirArrows=1
+let NERDTreeShowHidden=1
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "`":"`", '```':'```', '"""':'"""'}
 
 " vim-test
