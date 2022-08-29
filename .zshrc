@@ -34,6 +34,7 @@ setopt auto_cd
 # git command
 alias g='git'
 alias gs='git status'
+alias gsh='git stash'
 alias ga='git add'
 alias gaa='git add -A'
 alias gb='git branch'
@@ -43,6 +44,7 @@ alias gd='git diff'
 alias glol='git log --all --graph --decorate --oneline'
 alias gp='git push'
 alias gpu='git pull'
+alias gr='git restore'
 
 gpd() {
   branch="$(git rev-parse --abbrev-ref HEAD)"
@@ -77,6 +79,7 @@ alias icotxt=iconv -f big5 -t utf8
 # ruby on rails
 alias b="bundle"
 alias br="bin\/rails server"
+alias dbm="bin\/rails db:migrate"
 alias rs="bin\/rspec"
 alias bw="bin\/webpack-dev-server"
 alias bc="bin\/rails console --sandbox"
