@@ -34,6 +34,7 @@ setopt auto_cd
 # git command
 alias g='git'
 alias gs='git status'
+alias gsh='git stash'
 alias ga='git add'
 alias gaa='git add -A'
 alias gb='git branch'
@@ -43,9 +44,28 @@ alias gd='git diff'
 alias glol='git log --all --graph --decorate --oneline'
 alias gp='git push'
 alias gpu='git pull'
+alias gicm="git init && git add -A && git commit -m 'Initial commit'"
+
+gpd() {
+  branch="$(git rev-parse --abbrev-ref HEAD)"
+  git push -u origin "$branch"
+}
+
+ticket() {
+  base_branch="${BASE_BRANCH:-origin/development}"
+  initials="${INITIALS:-SH}"
+  ticket_number="$1"
+  name="${@:2}"
+  task_name="$(echo $name | tr ' ' '_' | tr '[:upper:]' '[:lower:]')"
+  branch_name="${initials}_${ticket_number}_${task_name}"
+  echo "Creating branch $branch_name"
+  git checkout -b $branch_name $base_branch
+}
+
 
 alias c="code ."
 alias cd..="cd .."
+alias gr='git restore'
 
 alias y="yarn"
 alias yd="yarn dev"
@@ -57,10 +77,12 @@ alias icotxt=iconv -f big5 -t utf8
 # ruby on rails
 alias b="bundle"
 alias br="bin\/rails server"
+alias dbm="bin\/rails db:migrate"
 alias rs="bin\/rspec"
 alias bw="bin\/webpack-dev-server"
 alias bc="bin\/rails console --sandbox"
 alias fm="foreman start -f Procfile.dev"
+alias fs="foreman start"
 
 # homebrew
 alias brewall="brew update && brew upgrade && brew cleanup"

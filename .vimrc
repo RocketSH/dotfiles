@@ -26,7 +26,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'lifepillar/pgsql.vim', { 'for': 'sql' }
 
 " autocompletion
-Plug 'neoclide/coc.nvim', { 'on': [], 'branch': 'release'} 
+" Plug 'neoclide/coc.nvim'
 Plug 'github/copilot.vim', { 'on': [] }
 Plug 'SirVer/ultisnips', { 'for': ['javascript', 'jsx', 'typescript', 'typescriptreact'] }
 Plug 'mlaursen/vim-react-snippets'
@@ -106,6 +106,7 @@ endif
 let mapleader = " "
 let NERDTreeMinimalUI=28
 let NERDTreeDirArrows=1
+let NERDTreeShowHidden=1
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "`":"`", '```':'```', '"""':'"""'}
 
 " vim-test
@@ -116,7 +117,7 @@ let test#strategy = "neovim"
 let test#neovim#term_position = "vert botright"
 
 " coc config
-let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint', 'coc-stylelintplus', 'coc-rls', 'coc-prettier', 'coc-json', 'coc-elixir', 'coc-emmet', 'coc-css', 'coc-diagnostic', 'coc-snippets', 'coc-vetur']
+" let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint', 'coc-stylelintplus', 'coc-rls', 'coc-prettier', 'coc-json', 'coc-elixir', 'coc-emmet', 'coc-css', 'coc-diagnostic', 'coc-snippets', 'coc-vetur', 'coc-solargraph']
 
 nnoremap <Space> <Nop>
 
