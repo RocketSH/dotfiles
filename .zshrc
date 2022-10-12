@@ -69,13 +69,16 @@ alias gr='git restore'
 
 alias y="yarn"
 alias yd="yarn dev"
+alias ydp="yarn deploy"
 alias ys="yarn start"
+alias yj="yarn jest"
 
 alias vim=nvim
 alias icotxt=iconv -f big5 -t utf8
 
 # ruby on rails
 alias b="bundle"
+alias ber="bundle exec rails"
 alias br="bin\/rails server"
 alias dbm="bin\/rails db:migrate"
 alias rs="bin\/rspec"

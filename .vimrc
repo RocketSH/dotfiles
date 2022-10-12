@@ -25,14 +25,17 @@ Plug 'w0rp/ale', { 'on': [] }                           " lint
 Plug 'jiangmiao/auto-pairs'
 Plug 'lifepillar/pgsql.vim', { 'for': 'sql' }
 
+" vim
+Plug 'nvim-lua/plenary.nvim'
+Plug 'ctjhoa/spacevim'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
+
 " autocompletion
 " Plug 'neoclide/coc.nvim'
 Plug 'github/copilot.vim', { 'on': [] }
 Plug 'SirVer/ultisnips', { 'for': ['javascript', 'jsx', 'typescript', 'typescriptreact'] }
 Plug 'mlaursen/vim-react-snippets'
-
-Plug 'ludovicchabant/vim-gutentags', { 'for': ['javascript', 'jsx', 'typescript', 'typescriptreact', 'elixir'] }
-
+Plug 'ludovicchabant/vim-gutentags', { 'for': ['javascript', 'jsx', 'typescript', 'typescriptreact'] }
 
 " css
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
@@ -40,11 +43,6 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'ap/vim-css-color'
 Plug 'JulesWang/css.vim'
 Plug 'hail2u/vim-css3-syntax'
-
-" vim
-Plug 'nvim-lua/plenary.nvim'
-Plug 'ctjhoa/spacevim'
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 " theme
 Plug 'flazz/vim-colorschemes'
@@ -59,7 +57,7 @@ Plug 'APZelos/blamer.nvim'
 " ruby / rails
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }             " ruby
 Plug 'tpope/vim-rails', { 'for': 'ruby' }               " rails
-Plug 'tpope/vim-endwise', { 'for': ['ruby', 'elixir'], 'on': [] } " auto end
+Plug 'tpope/vim-endwise', { 'for': ['ruby'], 'on': [] } " auto end
 Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }          " run rspec
 Plug 'tpope/vim-bundler', { 'for': 'ruby' }             " bundle s and smart ctags
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
@@ -67,12 +65,12 @@ Plug 'tpope/vim-haml'
 Plug 'ngmy/vim-rubocop'
 
 " Testing
-Plug 'vim-test/vim-test', { 'for': ['ruby', 'typescript'] }
+Plug 'vim-test/vim-test', { 'for': ['ruby', 'typescript', 'javascript', 'javascriptreact'] }
 
 " js / jsx / ts / tsx
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'jsx', 'typescript', 'typescriptreact'] }
 Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['javascript', 'jsx', 'typescriptreact'] }
-Plug 'mattn/emmet-vim', { 'for': ['javascript', 'jsx', 'typescriptreact', 'html', 'eelixir'] }
+Plug 'mattn/emmet-vim', { 'for': ['javascript', 'jsx', 'typescriptreact', 'html'] }
 Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript', 'typescriptreact'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'sass' }
 Plug 'jparise/vim-graphql', { 'for': ['javascript', 'typescript', 'jsx'] }
@@ -84,7 +82,7 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --producti
 Plug 'evanleck/vim-svelte', {'branch': 'main', 'for': 'svelte' }
 
 " syntaxes and languages
-Plug 'valloric/MatchTagAlways', { 'for': ['xml', 'html', 'eruby', 'eelixir', 'javascript', 'javascriptreact', 'typescriptreact'] } " highlight matching tags
+Plug 'valloric/MatchTagAlways', { 'for': ['xml', 'html', 'eruby', 'javascript', 'javascriptreact', 'typescriptreact'] } " highlight matching tags
 Plug 'shime/vim-livedown', { 'for': 'markdown' }        " real time markdown editing
 call plug#end()
 
@@ -117,7 +115,18 @@ let test#strategy = "neovim"
 let test#neovim#term_position = "vert botright"
 
 " coc config
-" let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint', 'coc-stylelintplus', 'coc-rls', 'coc-prettier', 'coc-json', 'coc-elixir', 'coc-emmet', 'coc-css', 'coc-diagnostic', 'coc-snippets', 'coc-vetur', 'coc-solargraph']
+" let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint', 'coc-stylelintplus', 'coc-rust-analyzer', 'coc-rls', 'coc-prettier', 'coc-json', 'coc-emmet', 'coc-css', 'coc-diagnostic', 'coc-snippets', 'coc-vetur', 'coc-solargraph']
+set hidden " Some servers have issues with backup files, see #649 set nobackup set nowritebackup " Better display for messages set cmdheight=2 " You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Remap for rename current word
+nmap <F2> <Plug>(coc-rename)
+nmap <silent> <F5> :e!<CR>
 
 nnoremap <Space> <Nop>
 
@@ -183,14 +192,20 @@ let g:airline_detect_crypt = 0
 let g:airline_section_y = ''
 let g:airline_section_warning = ''
 
+" Nerdtree
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeIgnore = []
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeStatusline = ''
+
 " ultisnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
 " Press Tab to scroll _down_ a list of auto-completions
 let g:SuperTabDefaultCompletionType = "<c-n>"
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
