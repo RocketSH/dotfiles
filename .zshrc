@@ -90,6 +90,12 @@ alias fs="foreman start"
 # homebrew
 alias brewall="brew update && brew upgrade && brew cleanup"
 
+# cs50
+export CC="clang"
+export CFLAGS="-fsanitize=signed-integer-overflow -fsanitize=undefined -ggdb3 -O0 -std=c11 -Wall -Werror -Wextra -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wshadow"
+export LDLIBS="-L/opt/homebrew/opt/openssl@1.1/lib -lcs50 -lm"
+# export LDLIBS="-lcrypt -lcs50 -lm"
+
 # export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.

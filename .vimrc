@@ -31,7 +31,7 @@ Plug 'ctjhoa/spacevim'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 " autocompletion
-" Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim'
 Plug 'github/copilot.vim', { 'on': [] }
 Plug 'SirVer/ultisnips', { 'for': ['javascript', 'jsx', 'typescript', 'typescriptreact'] }
 Plug 'mlaursen/vim-react-snippets'
@@ -115,7 +115,7 @@ let test#strategy = "neovim"
 let test#neovim#term_position = "vert botright"
 
 " coc config
-" let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint', 'coc-stylelintplus', 'coc-rust-analyzer', 'coc-rls', 'coc-prettier', 'coc-json', 'coc-emmet', 'coc-css', 'coc-diagnostic', 'coc-snippets', 'coc-vetur', 'coc-solargraph']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint', 'coc-stylelintplus', 'coc-rust-analyzer', 'coc-rls', 'coc-prettier', 'coc-json', 'coc-emmet', 'coc-css', 'coc-diagnostic', 'coc-snippets', 'coc-vetur', 'coc-solargraph']
 set hidden " Some servers have issues with backup files, see #649 set nobackup set nowritebackup " Better display for messages set cmdheight=2 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
 set shortmess+=c
@@ -217,4 +217,6 @@ let g:coc_snippet_prev = '<c-k>'
 " theme
 colorscheme 1989
 let g:airline_theme="base16"
+
+let g:python3_host_prog="/usr/bin/python3"
 
